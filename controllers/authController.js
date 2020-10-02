@@ -73,7 +73,7 @@ exports.signupUser = (req, res, next) => {
         subject: "Verify your Account on Swiggy",
         html: `
                       <p>Please verify your email by clicking on the link below - FoodHub</p>
-                      <p>Click this <a href="http://localhost:3002/auth/verify/${token}">link</a> to verify your account.</p>
+                      <p>Click this <a href="https://swiggy-clone-backend.herokuapp.com/auth/verify/${token}">link</a> to verify your account.</p>
                     `,
       });
       res.status(201).json({
@@ -246,7 +246,7 @@ exports.signupSeller = (req, res, next) => {
         subject: "Verify your Account on Swiggy",
         html: `
                       <p>Please verify your email by clicking on the link below - FoodHub</p>
-                      <p>Click this <a href="http://localhost:3002/auth/verify/${token}">link</a> to verify your account.</p>
+                      <p>Click this <a href="https://swiggy-clone-backend.herokuapp.com/auth/verify/${token}">link</a> to verify your account.</p>
                     `,
       });
       res.status(201).json({
