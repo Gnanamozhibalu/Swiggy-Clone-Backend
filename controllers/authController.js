@@ -65,20 +65,21 @@ exports.signupUser = (req, res, next) => {
       return user.save();
     })
     .then((savedUser) => {
-      console.log(email)
-      console.log(token)
+      console.log(email);
+      console.log(token);
+      const url=`https://swiggy-clone-backend.herokuapp.com/auth/verify/${token}`
       transporter.sendMail({
         to: email,
         from: "gnanamozhi.it@gmail.com",
         subject: "Verify your Account on Swiggy",
         html: `
-                      <p>Please verify your email by clicking on the link below - FoodHub</p>
-                      <p>Click this <a href="https://swiggy-clone-backend.herokuapp.com/auth/verify/${token}">link</a> to verify your account.</p>
+                      Please verify your email by clicking on the link below - Swiggy<br/>
+                      Click this <a href="${url}">link</a> to verify your account.
                     `,
       });
       res.status(201).json({
         message:
-          "User signed-up successfully, please verify your email before logging in.",
+          "User signed-up successfully",
         userId: savedUser._id,
       });
     })
@@ -172,7 +173,7 @@ exports.signupSeller = (req, res, next) => {
     error.statusCode = 422;
     throw error;
   }
-  console.log(req.body)
+  console.log(req.body);
   const arrayFiles = req.files.map((file) => file.path);
   const email = req.body.email;
   const name = req.body.name;
@@ -239,19 +240,19 @@ exports.signupSeller = (req, res, next) => {
       return seller.save();
     })
     .then((savedSeller) => {
-      console.log(token)
+      console.log(token);
       transporter.sendMail({
         to: email,
         from: "gnanamozhi.it@gmail.com",
         subject: "Verify your Account on Swiggy",
         html: `
-                      <p>Please verify your email by clicking on the link below - FoodHub</p>
+                      <p>Please verify your email by clicking on the link below - Swiggy</p>
                       <p>Click this <a href="https://swiggy-clone-backend.herokuapp.com/auth/verify/${token}">link</a> to verify your account.</p>
                     `,
       });
       res.status(201).json({
         message:
-          "Seller signed-up successfully, please verify your email before logging in.",
+          "Seller signed-up successfully",
         sellerId: savedSeller._id,
       });
     })
